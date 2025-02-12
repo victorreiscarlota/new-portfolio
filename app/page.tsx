@@ -3,12 +3,14 @@ import { MacbookScroll } from "@/components/ui/macbook-scroll";
 import Link from "next/link";
 import { div } from "motion/react-client";
 import { Scroll } from "./scroll";
+import { Globo } from "./globo"
 
 export default function Home() {
   return (
     <div className="text-slate-700 xl">
       <h1> Hello World!</h1>
-      <Scroll></Scroll>
+      {/* <Scroll></Scroll> */}
+      <Globo></Globo>
     </div>
   )
 };
