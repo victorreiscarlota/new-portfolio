@@ -3,6 +3,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { IconAxe } from "@tabler/icons-react";
 
 const transition = {
     type: "spring",
@@ -50,17 +51,20 @@ export const MenuItem = ({
                         className="absolute top-full pt-4"
                         style={{ 
                             zIndex: 9999,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
+                            left: '-600%', 
+                            transform: 'translateX(50%)', 
                             width: '100vw',
-                            maxWidth: '100vw',
-                            pointerEvents: 'auto',
+                            maxWidth: '750px',
                         }}
                     >
-                        <div className="px-4 w-full max-w-screen-xl mx-auto">
+                        <div className="px-4 w-full max-w-screen-2xl mx-auto">
                             <motion.div
-                                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.1] dark:border-white/[0.1] shadow-xl"
+                                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-visible border border-black/[0.1] dark:border-white/[0.1] shadow-xl"
                                 layoutId="active"
+                                style={{
+                                    maxWidth: '1400px',
+                                    margin: '0 auto',
+                                }}
                             >
                                 <motion.div className="p-4">
                                     {children}
@@ -73,7 +77,6 @@ export const MenuItem = ({
         </div>
     );
 };
-
 export const Menu = ({
     setActive,
     children,
