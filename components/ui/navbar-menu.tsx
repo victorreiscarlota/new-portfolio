@@ -62,7 +62,7 @@ export const MenuItem = ({
                                 className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-visible border border-black/[0.1] dark:border-white/[0.1] shadow-xl"
                                 layoutId="active"
                                 style={{
-                                    maxWidth: '1400px',
+                                    // maxWidth: '1400px',
                                     margin: '0 auto',
                                 }}
                             >
