@@ -19,11 +19,13 @@ export const MenuItem = ({
     active,
     item,
     children,
+    isWide = false,
 }: {
     setActive: (item: string) => void;
     active: string | null;
     item: string;
     children?: React.ReactNode;
+    isWide?: boolean;
 }) => {
     return (
         <div 
@@ -51,18 +53,17 @@ export const MenuItem = ({
                         className="absolute top-full pt-4"
                         style={{ 
                             zIndex: 9999,
-                            left: '-600%', 
-                            transform: 'translateX(50%)', 
-                            width: '100vw',
-                            maxWidth: '750px',
+                            left: isWide ? '-600%' : '0%',
+                            transform: isWide ? 'translateX(-50%)' : 'none',
+                            maxWidth: isWide ? '750px' : '300px',
+                            width: '100vw'
                         }}
                     >
-                        <div className="px-4 w-full max-w-screen-2xl mx-auto">
+                        <div className={`px-4 w-full mx-auto ${isWide ? 'max-w-screen-xl' : 'max-w-xs'}`}>
                             <motion.div
                                 className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-visible border border-black/[0.1] dark:border-white/[0.1] shadow-xl"
                                 layoutId="active"
                                 style={{
-                                    // maxWidth: '1400px',
                                     margin: '0 auto',
                                 }}
                             >
@@ -77,6 +78,7 @@ export const MenuItem = ({
         </div>
     );
 };
+
 export const Menu = ({
     setActive,
     children,
@@ -104,7 +106,7 @@ export const Menu = ({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => {
                 setIsHovered(false);
-                setActive(null);
+                setTimeout(() => setActive(null), 100);
             }}
         >
             <motion.div
