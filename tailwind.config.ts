@@ -11,7 +11,11 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        carpenter: ['"Carpenter"', 'sans-serif'],
+      },
+    },
   },
   plugins: [addVariablesForColors],
 };

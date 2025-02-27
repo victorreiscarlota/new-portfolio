@@ -26,6 +26,9 @@ importers:
       framer-motion:
         specifier: ^12.4.2
         version: 12.4.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      gsap:
+        specifier: ^3.12.7
+        version: 3.12.7
       new-app:
         specifier: 'file:'
         version: file:(@types/react@19.0.8)(@types/three@0.173.0)(use-sync-external-store@1.4.0(react@19.0.0))
@@ -691,6 +694,9 @@ packages:
 
   glsl-noise@0.0.0:
     resolution: {integrity: sha512-b/ZCF6amfAUb7dJM/MxRs7AetQEahYzJ8PtgfrmEdtw6uyGOr+ZSGtgjFm6mfsBkxJ4d2W7kg+Nlqzqvn3Bc0w==}
+
+  gsap@3.12.7:
+    resolution: {integrity: sha512-V4GsyVamhmKefvcAKaoy0h6si0xX7ogwBoBSs2CTJwt7luW0oZzC0LhdkyuKV8PJAXr7Yaj8pMjCKD4GJ+eEMg==}
 
   h3-js@4.1.0:
     resolution: {integrity: sha512-LQhmMl1dRQQjMXPzJc7MpZ/CqPOWWuAvVEoVJM9n/s7vHypj+c3Pd5rLQCkAsOgAoAYKbNCsYFE++LF7MvSfCQ==}
@@ -1876,6 +1882,8 @@ snapshots:
 
   glsl-noise@0.0.0: {}
 
+  gsap@3.12.7: {}
+
   h3-js@4.1.0: {}
 
   hasown@2.0.2:
@@ -2003,11 +2011,13 @@ snapshots:
       '@react-three/drei': 9.121.4(@react-three/fiber@9.0.0-alpha.8(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.173.0))(@types/react@19.0.8)(@types/three@0.173.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.173.0)(use-sync-external-store@1.4.0(react@19.0.0))
       '@react-three/fiber': 9.0.0-alpha.8(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.173.0)
       '@tabler/icons-react': 3.30.0(react@19.0.0)
+      '@types/react-responsive': 9.0.0(react@19.0.0)
       clsx: 2.1.1
       framer-motion: 12.4.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
+      react-responsive: 10.0.0(react@19.0.0)
       tailwind-merge: 2.6.0
       three: 0.173.0
       three-globe: 2.41.12(three@0.173.0)
