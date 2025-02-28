@@ -7,6 +7,17 @@
   outline: 1px solid red;
 } */
 
+
+@layer components {
+  .gradient-pattern {
+    background-image: radial-gradient(
+      rgb(255 255 255 / 10%) 1px, 
+      transparent 1px
+    );
+    background-size: 1.1rem 1.1rem;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
