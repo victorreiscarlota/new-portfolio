@@ -7,6 +7,9 @@ import { Beams } from "./pages/beams";
 import { Card } from "./pages/card";
 import { AnimatedPin } from "./pages/animated-pin";
 import { Banner } from "@/components/ui/music-banner";
+import { Apple } from "./pages/apple-carousel";
+
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,6 +33,7 @@ export default function Home() {
           <Beams />
           <Card />
           <AnimatedPin />
+          <Apple/>
         </>
       )}
     </div>
