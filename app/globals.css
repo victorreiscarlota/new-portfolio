@@ -18,6 +18,16 @@
   }
 }
 
+
+* {
+  -webkit-user-select: none;
+}
+
+*:active,
+*:hover {
+  cursor: pointer;
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
