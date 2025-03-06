@@ -31,9 +31,9 @@ float noise(vec2 p) {
     vec2 i = floor(p);
     vec2 f = fract(p);
     vec2 u = f * f * (3.0 - 2.0 * f);
-    return mix(mix(dot(hash(i + vec2(0.0, 0.0)), f - vec2(0.0, 0.0)), 
+    return mix(mix(dot(hash(i + vec2(0.0, 0.0)), f - vec2(0.0, 0.0)),
                    dot(hash(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0)), u.x),
-               mix(dot(hash(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0)), 
+               mix(dot(hash(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0)),
                    dot(hash(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0)), u.x), u.y);
 }
 
@@ -206,9 +206,8 @@ export const Banner = () => {
                 className="absolute inset-0 w-full h-full z-20"
                 style={{
                     backgroundImage: `
-                        linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-                        radial-gradient(circle at center, rgba(168, 85, 247, 0.2) 1px, transparent 1px)
+                        linear-gradient(rgba(40, 40, 40, 0.3) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(40, 40, 40, 0.3) 1px, transparent 1px)
                     `,
                     backgroundSize: '20px 20px',
                     backgroundColor: 'black'
@@ -216,74 +215,7 @@ export const Banner = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 2 }}
-            >
-                {/* Raios horizontais */}
-                <div className="absolute inset-0 overflow-hidden">
-                    {[...Array(12)].map((_, i) => {
-                        const gridLine = Math.floor(Math.random() * 50) * 20
-                        return (
-                            <motion.div
-                                key={`h-${i}`}
-                                className="absolute h-[1px] bg-purple-500/50"
-                                style={{
-                                    width: '100%',
-                                    top: `${gridLine}px`,
-                                    boxShadow: '0 0 8px rgba(168, 85, 247, 0.3)'
-                                }}
-                                initial={{ x: '-100%' }}
-                                animate={{ x: '100%' }}
-                                transition={{
-                                    duration: Math.random() * 3 + 2,
-                                    repeat: Infinity,
-                                    ease: 'linear',
-                                    delay: Math.random() * 5
-                                }}
-                            />
-                        )
-                    })}
-                </div>
-
-                {/* Raios verticais */}
-                <div className="absolute inset-0 overflow-hidden">
-                    {[...Array(12)].map((_, i) => {
-                        const gridLine = Math.floor(Math.random() * 50) * 20
-                        return (
-                            <motion.div
-                                key={`v-${i}`}
-                                className="absolute w-[1px] bg-purple-500/50"
-                                style={{
-                                    height: '100%',
-                                    left: `${gridLine}px`,
-                                    boxShadow: '0 0 8px rgba(168, 85, 247, 0.3)'
-                                }}
-                                initial={{ y: '-100%' }}
-                                animate={{ y: '100%' }}
-                                transition={{
-                                    duration: Math.random() * 3 + 2,
-                                    repeat: Infinity,
-                                    ease: 'linear',
-                                    delay: Math.random() * 5
-                                }}
-                            />
-                        )
-                    })}
-                </div>
-
-                {/* Bolinhas nos centros dos quadrados */}
-                <div className="absolute inset-0">
-                    {[...Array(300)].map((_, i) => (
-                        <div
-                            key={`dot-${i}`}
-                            className="absolute w-[2px] h-[2px] bg-purple-400/30 rounded-full"
-                            style={{
-                                left: `${(Math.random() * 100)}%`,
-                                top: `${(Math.random() * 100)}%`,
-                                boxShadow: '0 0 4px rgba(168, 85, 247, 0.3)'
-                            }}
-                        />
-                    ))}
-                </div>
-            </motion.div>
+            />
 
             <motion.div
                 className="fixed top-4 left-4 z-50 cursor-pointer"
