@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 declare global {
   interface Window {
@@ -31,9 +31,9 @@ float noise(vec2 p) {
     vec2 i = floor(p);
     vec2 f = fract(p);
     vec2 u = f * f * (3.0 - 2.0 * f);
-    return mix(mix(dot(hash(i + vec2(0.0, 0.0)), f - vec2(0.0, 0.0)),
+    return mix(mix(dot(hash(i + vec2(0.0, 0.0)), f - vec2(0.0, 0.0)), 
                    dot(hash(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0)), u.x),
-               mix(dot(hash(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0)),
+               mix(dot(hash(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0)), 
                    dot(hash(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0)), u.x), u.y);
 }
 
@@ -199,32 +199,167 @@ export const Banner = () => {
         <div className="relative w-full h-screen overflow-hidden bg-black">
             <canvas
                 ref={canvasRef}
-                className="absolute inset-0 w-full h-full z-30 cursor-pointer"
-                onClick={toggleAudio}
+                className="absolute inset-0 w-full h-full z-30"
             />
 
             <motion.div
-                className="absolute inset-0 w-full h-full z-10 opacity-20 grayscale bg-cover bg-center"
-                style={{ backgroundImage: 'url(https://assets.codepen.io/1468070/clouds.jpg)' }}
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ duration: 240, repeat: Infinity, ease: 'linear' }}
-            />
-
-            <motion.div
-                className="absolute inset-0 w-full h-full z-20 gradient-pattern"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 2 }}
-            />
-
-            <motion.p
-                className="fixed bottom-0 left-1/2 -translate-x-1/2 p-4 text-white font-medium z-40 text-sm md:text-base"
+                className="absolute inset-0 w-full h-full z-20"
+                style={{
+                    backgroundImage: `
+                        linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                        radial-gradient(circle at center, rgba(168, 85, 247, 0.2) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '20px 20px',
+                    backgroundColor: 'black'
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 2 }}
             >
-                Click to toggle 🎵
-            </motion.p>
+                {/* Raios horizontais */}
+                <div className="absolute inset-0 overflow-hidden">
+                    {[...Array(12)].map((_, i) => {
+                        const gridLine = Math.floor(Math.random() * 50) * 20
+                        return (
+                            <motion.div
+                                key={`h-${i}`}
+                                className="absolute h-[1px] bg-purple-500/50"
+                                style={{
+                                    width: '100%',
+                                    top: `${gridLine}px`,
+                                    boxShadow: '0 0 8px rgba(168, 85, 247, 0.3)'
+                                }}
+                                initial={{ x: '-100%' }}
+                                animate={{ x: '100%' }}
+                                transition={{
+                                    duration: Math.random() * 3 + 2,
+                                    repeat: Infinity,
+                                    ease: 'linear',
+                                    delay: Math.random() * 5
+                                }}
+                            />
+                        )
+                    })}
+                </div>
+
+                {/* Raios verticais */}
+                <div className="absolute inset-0 overflow-hidden">
+                    {[...Array(12)].map((_, i) => {
+                        const gridLine = Math.floor(Math.random() * 50) * 20
+                        return (
+                            <motion.div
+                                key={`v-${i}`}
+                                className="absolute w-[1px] bg-purple-500/50"
+                                style={{
+                                    height: '100%',
+                                    left: `${gridLine}px`,
+                                    boxShadow: '0 0 8px rgba(168, 85, 247, 0.3)'
+                                }}
+                                initial={{ y: '-100%' }}
+                                animate={{ y: '100%' }}
+                                transition={{
+                                    duration: Math.random() * 3 + 2,
+                                    repeat: Infinity,
+                                    ease: 'linear',
+                                    delay: Math.random() * 5
+                                }}
+                            />
+                        )
+                    })}
+                </div>
+
+                {/* Bolinhas nos centros dos quadrados */}
+                <div className="absolute inset-0">
+                    {[...Array(300)].map((_, i) => (
+                        <div
+                            key={`dot-${i}`}
+                            className="absolute w-[2px] h-[2px] bg-purple-400/30 rounded-full"
+                            style={{
+                                left: `${(Math.random() * 100)}%`,
+                                top: `${(Math.random() * 100)}%`,
+                                boxShadow: '0 0 4px rgba(168, 85, 247, 0.3)'
+                            }}
+                        />
+                    ))}
+                </div>
+            </motion.div>
+
+            <motion.div
+                className="fixed top-4 left-4 z-50 cursor-pointer"
+                onClick={toggleAudio}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+            >
+                <AnimatePresence mode='wait'>
+                    {isPlaying ? (
+                        <motion.svg
+                            key="sound-on"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-8 w-8 text-white"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            initial={{ scale: 0, y: 20 }}
+                            animate={{ 
+                                scale: 1,
+                                y: 0,
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 200,
+                                    damping: 8
+                                }
+                            }}
+                            exit={{ 
+                                scale: 0,
+                                y: -20,
+                                transition: { duration: 0.1 }
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <path d="M3 14v-4a1 1 0 0 1 1-1h2l3.5-3A1 1 0 0 1 11 7v10a1 1 0 0 1-1.5.866L6 15H4a1 1 0 0 1-1-1z"/>
+                            <path d="M16 12h4M18 10v4"/>
+                        </motion.svg>
+                    ) : (
+                        <motion.svg
+                            key="sound-off"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-8 w-8 text-white"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            initial={{ scale: 0, y: -20 }}
+                            animate={{ 
+                                scale: 1,
+                                y: 0,
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 200,
+                                    damping: 8
+                                }
+                            }}
+                            exit={{ 
+                                scale: 0,
+                                y: 20,
+                                transition: { duration: 0.1 }
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <path d="M3 14v-4a1 1 0 0 1 1-1h2l3.5-3A1 1 0 0 1 11 7v10a1 1 0 0 1-1.5.866L6 15H4a1 1 0 0 1-1-1z"/>
+                            <path d="M17 9l4 4m0-4l-4 4"/>
+                        </motion.svg>
+                    )}
+                </AnimatePresence>
+            </motion.div>
         </div>
     )
 }

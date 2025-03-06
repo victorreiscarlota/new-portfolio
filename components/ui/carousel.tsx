@@ -126,7 +126,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                 )}
                 style={{ scrollBehavior: 'smooth' }}
             >
-                <div className="flex flex-nowrap gap-4 pl-4 pr-[20%]">
+                <div className="flex flex-nowrap pl-4 pr-[20%]">
                     {items.map((item, index) => (
                         <motion.div
                             key={index}
