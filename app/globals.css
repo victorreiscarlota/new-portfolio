@@ -5,7 +5,7 @@
 
 /* *, *::before, *::after {
   outline: 1px solid red;
-} */
+}  */
 
 
 @layer components {
@@ -15,6 +15,21 @@
       transparent 1px
     );
     background-size: 1.1rem 1.1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply transition-colors duration-300;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  
+  .no-transition,
+  .no-transition *,
+  .loading-spinner,
+  .loading-spinner * {
+    @apply transition-none !important;
   }
 }
 

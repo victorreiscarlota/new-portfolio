@@ -4,11 +4,9 @@ import LoadingSpinner from "./pages/loading-globe";
 import { Nav } from "./pages/nav";
 import { Scroll } from "./pages/scroll";
 import { Beams } from "./pages/beams";
-import { Card } from "./pages/card";
-import { AnimatedPin } from "./pages/animated-pin";
 import { Banner } from "@/components/ui/music-banner";
 import { Apple } from "./pages/apple-carousel";
-
+import { ThemeToggle } from "@/components/theme-toggle"; 
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,64 +20,19 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="text-slate-700 xl">
+    <div className="text-slate-700 dark:bg-gray-900 dark:text-gray-300 xl">
       <LoadingSpinner isLoading={isLoading} />
       
       {!isLoading && (
         <>
           <Nav />
+          <ThemeToggle /> {/* Adicionei o toggle aqui */}
           <Banner />
           <Scroll />
           <Beams />
-          <Card />
-          <AnimatedPin />
           <Apple/>
         </>
       )}
     </div>
   );
 }
-
-
-
-
-
-// 'use client'
-
-// import { useState, useRef } from 'react'
-// import { AnimatePresence } from 'framer-motion'
-// import { CreativeLoader, CreativeLoaderHandle } from '@/components/ui/loader'
-// import { Nav } from './pages/nav'
-// import { Scroll } from './pages/scroll'
-// import { Beams } from './pages/beams'
-// import { Card } from './pages/card'
-// import { AnimatedPin } from './pages/animated-pin'
-
-// export default function Home() {
-//   const [isLoading, setIsLoading] = useState(true)
-//   const loaderRef = useRef<CreativeLoaderHandle>(null)
-
-//   return (
-//     <div className="text-slate-700 xl">
-//       <AnimatePresence mode="wait">
-//         {isLoading && (
-//           <CreativeLoader
-//             ref={loaderRef}
-//             onComplete={() => setIsLoading(false)}
-//             duration={4.5}
-//           />
-//         )}
-//       </AnimatePresence>
-
-//       {!isLoading && (
-//         <>
-//           <Nav />
-//           <Scroll />
-//           <Beams />
-//           <Card />
-//           <AnimatedPin />
-//         </>
-//       )}
-//     </div>
-//   )
-// }
