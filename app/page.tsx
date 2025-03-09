@@ -7,6 +7,7 @@ import { Beams } from "./pages/beams";
 import { Banner } from "@/components/ui/music-banner";
 import { Apple } from "./pages/apple-carousel";
 import { ThemeToggle } from "@/components/theme-toggle"; 
+import  ScrambleText  from "./pages/scramble";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,8 @@ export default function Home() {
       {!isLoading && (
         <>
           <Nav />
-          <ThemeToggle /> {/* Adicionei o toggle aqui */}
+          <ThemeToggle />
+          <ScrambleText/>
           <Banner />
           <Scroll />
           <Beams />
