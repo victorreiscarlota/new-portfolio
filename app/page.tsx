@@ -8,6 +8,7 @@ import { Banner } from "@/components/ui/music-banner";
 import { Apple } from "./pages/apple-carousel";
 import { ThemeToggle } from "@/components/theme-toggle"; 
 import  ScrambleText  from "./pages/scramble";
+import DragScroll from "@/components/custom-scroll";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +29,7 @@ export default function Home() {
         <>
           <Nav />
           <ThemeToggle />
+          <DragScroll/>
           <ScrambleText/>
           <Banner />
           <Scroll />

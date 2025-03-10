@@ -218,7 +218,7 @@ export const Banner = () => {
             />
 
             <motion.div
-                className="fixed top-4 left-4 z-50 cursor-pointer"
+                className="clickable fixed top-4 left-4 z-50 cursor-pointer"
                 onClick={toggleAudio}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

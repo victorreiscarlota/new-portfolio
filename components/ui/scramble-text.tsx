@@ -47,7 +47,7 @@ const ScrambleText = () => {
                 ref={h1Ref}
                 data-value="WELCOME!"
                 onMouseOver={handleMouseOver}
-                className="font-mono text-[clamp(3rem,10vw,10rem)] text-white px-[clamp(1rem,2vw,3rem)] rounded-[clamp(0.4rem,0.75vw,1rem)] hover:bg-white hover:text-black transition-colors"
+                className="clickable font-mono text-[clamp(3rem,10vw,10rem)] text-white px-[clamp(1rem,2vw,3rem)] rounded-[clamp(0.4rem,0.75vw,1rem)] hover:bg-white hover:text-black transition-colors"
             >
                 WELCOME!
             </h1>

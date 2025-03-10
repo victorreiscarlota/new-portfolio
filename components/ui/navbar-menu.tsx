@@ -78,7 +78,7 @@ export const MenuItem = ({
                     >
                         <div className={`px-4 w-full mx-auto ${isWide ? 'max-w-screen-xl' : 'max-w-xs'}`}>
                             <motion.div
-                                className="bg-white dark:bg-[#0d1b2a] backdrop-blur-sm rounded-2xl overflow-visible border border-black/[0.1] dark:border-[#3dbfc2]/30 shadow-xl transition-colors duration-300"
+                                className="bg-white dark:bg-[#0d1b2a] backdrop-blur-sm rounded-2xl overflow-visible border border-black/[0.1] dark:border-black/30 shadow-xl transition-colors duration-300"
                                 layoutId="active"
                             >
                                 <div className="p-4">
@@ -152,7 +152,7 @@ export const Menu = ({
                 originY: 0.5,
                 opacity
             }}
-            className="fixed left-1/2 top-4 -translate-x-1/2 transform border dark:border-[#3dbfc2]/30 bg-white dark:bg-[#0d1b2a] shadow-xl flex items-center justify-center z-50 cursor-pointer transition-colors duration-300"
+            className="nav-container clickable fixed left-1/2 top-4 -translate-x-1/2 transform border dark:border-black/30 bg-white dark:bg-[#0d1b2a] shadow-xl flex items-center justify-center z-50 cursor-pointer transition-colors duration-300"
             onClick={() => setIsClicked(!isClicked)}
         >
             <motion.div
@@ -216,7 +216,7 @@ export const Menu = ({
                         </motion.button>
 
                         <motion.div
-                            className="flex space-x-4 [&>*:not(:last-child)]:border-r [&>*:not(:last-child)]:border-gray-300 dark:[&>*:not(:last-child)]:border-[#3dbfc2]/30"
+                            className="flex space-x-4 [&>*:not(:last-child)]:border-r [&>*:not(:last-child)]:border-gray-300 dark:[&>*:not(:last-child)]:border-black/30"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
@@ -250,7 +250,7 @@ export const ProductItem = ({
     src: string;
 }) => {
     return (
-        <Link href={href} className="flex space-x-2 group">
+        <Link href={href} className="clickable flex space-x-2 group">
             <motion.div
                 whileHover={{
                     scale: 1.02,
@@ -288,7 +288,7 @@ export const HoveredLink = ({ children, ...rest }: any) => {
         >
             <Link
                 {...rest}
-                className="text-neutral-700 dark:text-[#3dbfc2] hover:text-red-600 px-4 py-2 rounded-lg hover:bg-red-100 transition-colors duration-300"
+                className="clickable text-neutral-700 dark:text-[#3dbfc2] hover:text-red-600 px-4 py-2 rounded-lg hover:bg-red-100 transition-colors duration-300"
             >
                 {children}
             </Link>

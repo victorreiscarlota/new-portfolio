@@ -29,7 +29,7 @@ export function ThemeToggle() {
     return (
         <button
             onClick={toggleDarkMode}
-            className="fixed top-4 right-4 z-50 p-2 rounded-full bg-white dark:bg-[#FCF360] shadow-lg hover:scale-105 transition-all duration-300"
+            className="clickable fixed top-4 right-4 z-50 p-2 rounded-full bg-white dark:bg-[#FCF360] shadow-lg hover:scale-105 transition-all duration-300"
         >
             {darkMode ? (
                 <FiSun className="w-6 h-6 text-yellow-500 dark:text-[#6094FC] transition-colors duration-300" />
