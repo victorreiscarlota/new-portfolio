@@ -1,55 +1,85 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 const ScrambleText = () => {
-    const h1Ref = useRef<HTMLHeadingElement>(null)
-    const intervalRef = useRef<NodeJS.Timeout | null>(null)
+    const languages = ["WELCOME!", "BEM-VINDO!", "WILLKOMMEN!"]
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    const [currentText, setCurrentText] = useState(languages[0])
+    const [isHovering, setIsHovering] = useState(false)
+    const intervalRef = useRef<NodeJS.Timeout | null>(null)
+    const cycleRef = useRef<NodeJS.Timeout | null>(null)
+    const isMounted = useRef(true)
 
-    const handleMouseOver = () => {
-        if (!h1Ref.current) return
-
+    const scrambleText = (target: string) => {
         let iteration = 0
-        const target = h1Ref.current
-        const value = target.dataset.value || ''
+        
+        setCurrentText(
+            Array.from({ length: target.length }, 
+                () => letters[Math.floor(Math.random() * 26)]
+            ).join('')
+        )
 
         if (intervalRef.current) clearInterval(intervalRef.current)
-
+        
         intervalRef.current = setInterval(() => {
-            target.innerText = value
-                .split('')
-                .map((_, index) => {
-                    if (index < iteration) {
-                        return value[index]
-                    }
-                    return letters[Math.floor(Math.random() * 26)]
-                })
-                .join('')
+            setCurrentText(prev => {
+                return target.split('')
+                    .map((_, index) => {
+                        if(index < iteration) return target[index]
+                        return letters[Math.floor(Math.random() * 26)]
+                    })
+                    .join('')
+            })
 
-            if (iteration >= value.length && intervalRef.current) {
-                clearInterval(intervalRef.current)
+            if(iteration >= target.length) {
+                clearInterval(intervalRef.current!)
+                // Agenda próxima troca de idioma se não estiver em hover
+                if(!isHovering && isMounted.current) {
+                    cycleRef.current = setTimeout(() => {
+                        const nextIndex = (languages.indexOf(target) + 1) % languages.length
+                        scrambleText(languages[nextIndex])
+                    }, 2000)
+                }
             }
-
-            iteration += 1 / 3
+            
+            iteration += 0.4
         }, 30)
     }
 
+    const handleMouseOver = () => {
+        setIsHovering(true)
+        if (cycleRef.current) clearTimeout(cycleRef.current)
+        scrambleText(currentText)
+    }
+
+    const handleMouseLeave = () => {
+        setIsHovering(false)
+        // Reinicia ciclo após 2 segundos
+        if (cycleRef.current) clearTimeout(cycleRef.current)
+        cycleRef.current = setTimeout(() => {
+            const nextIndex = (languages.indexOf(currentText) + 1) % languages.length
+            scrambleText(languages[nextIndex])
+        }, 2000)
+    }
+
     useEffect(() => {
+        scrambleText(languages[0])
         return () => {
-            if (intervalRef.current) clearInterval(intervalRef.current)
+            isMounted.current = false
+            if(intervalRef.current) clearInterval(intervalRef.current)
+            if(cycleRef.current) clearTimeout(cycleRef.current)
         }
     }, [])
 
     return (
         <div className="min-h-screen grid place-items-center bg-[#1ecbe1] dark:bg-black overflow-hidden">
             <h1
-                ref={h1Ref}
-                data-value="WELCOME!"
                 onMouseOver={handleMouseOver}
-                className="clickable font-mono text-[clamp(3rem,10vw,10rem)] text-white px-[clamp(1rem,2vw,3rem)] rounded-[clamp(0.4rem,0.75vw,1rem)] hover:bg-[#E11E69] dark:hover:bg-white hover:text-[#1ee196] dark:hover:text-black transition-colors"
+                onMouseLeave={handleMouseLeave}
+                className="clickable font-mono text-[clamp(3rem,10vw,10rem)] text-white px-[clamp(1rem,2vw,3rem)] rounded-[clamp(0.4rem,0.75vw,1rem)] hover:bg-[#E11E69] dark:hover:bg-white hover:text-[#1ee196] dark:hover:text-black transition-colors cursor-default"
             >
-                WELCOME!
+                {currentText}
             </h1>
         </div>
     )
