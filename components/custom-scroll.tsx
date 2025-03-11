@@ -92,7 +92,7 @@ const DragScroll = ({ hide }: { hide: boolean }) => {
                         opacity: isDragging ? 1 : 0,
                         y: isDragging ? 0 : 10
                     }}
-                    transition={{ type: 'spring', stiffness: 300 }}
+                    transition={{ type: 'spring', stiffness: 400 }}
                 >
                     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M5 9L12 16L19 9" strokeWidth="2" strokeLinecap="round"/>
@@ -111,8 +111,7 @@ const DragScroll = ({ hide }: { hide: boolean }) => {
             >
                 {isDragging ? (
                     <div className="flex gap-2">
-                        <span className="text-xl font-bold">{'<'}</span>
-                        <span className="text-xl font-bold">{'>'}</span>
+                        
                     </div>
                 ) : (
                     <div className="text-sm uppercase font-medium flex flex-col items-center">
