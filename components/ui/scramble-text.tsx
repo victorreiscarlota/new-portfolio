@@ -42,12 +42,12 @@ const ScrambleText = () => {
     }, [])
 
     return (
-        <div className="min-h-screen grid place-items-center bg-black overflow-hidden">
+        <div className="min-h-screen grid place-items-center bg-[#1ecbe1] dark:bg-black overflow-hidden">
             <h1
                 ref={h1Ref}
                 data-value="WELCOME!"
                 onMouseOver={handleMouseOver}
-                className="clickable font-mono text-[clamp(3rem,10vw,10rem)] text-white px-[clamp(1rem,2vw,3rem)] rounded-[clamp(0.4rem,0.75vw,1rem)] hover:bg-white hover:text-black transition-colors"
+                className="clickable font-mono text-[clamp(3rem,10vw,10rem)] text-white px-[clamp(1rem,2vw,3rem)] rounded-[clamp(0.4rem,0.75vw,1rem)] hover:bg-[#E11E69] dark:hover:bg-white hover:text-[#1ee196] dark:hover:text-black transition-colors"
             >
                 WELCOME!
             </h1>

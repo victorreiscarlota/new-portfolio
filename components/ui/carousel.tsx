@@ -120,7 +120,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             <div
                 ref={carouselRef}
                 className={cn(
-                    "flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth",
+                    "clickable flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth",
                     "scrollbar-hide snap-x",
                     isDragging ? "cursor-grabbing" : "cursor-grab"
                 )}
