@@ -18,6 +18,17 @@
   }
 }
 
+@keyframes slide-out {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading-layer {
+      animation: slide-out 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
+
 @layer base {
   * {
     @apply transition-colors duration-300;
