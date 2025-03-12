@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-const DragScroll = ({ hide }: { hide: boolean }) => {
+const DragScroll = ({ hide = false }: { hide?: boolean }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
     const startY = useRef(0);
@@ -23,8 +23,10 @@ const DragScroll = ({ hide }: { hide: boolean }) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
 
-            const target = e.target as HTMLElement;
-            const isOverClickable = target.closest('.clickable, .nav-container, a, button, [role="button"]');
+            // Safe element check
+            const target = e.target;
+            const isOverClickable = target instanceof Element && 
+                target.closest('.clickable, .nav-container, a, button, [role="button"]');
             setIsHidden(!!isOverClickable);
 
             if (isDragging) {
@@ -100,7 +102,6 @@ const DragScroll = ({ hide }: { hide: boolean }) => {
                 </motion.div>
             </div>
 
-            
             <motion.div
                 key={isDragging ? 'arrows' : 'text'}
                 initial={{ scale: 0.5, opacity: 0 }}
@@ -111,7 +112,7 @@ const DragScroll = ({ hide }: { hide: boolean }) => {
             >
                 {isDragging ? (
                     <div className="flex gap-2">
-                        
+                        {/* Add any dragging state elements here */}
                     </div>
                 ) : (
                     <div className="text-sm uppercase font-medium flex flex-col items-center">

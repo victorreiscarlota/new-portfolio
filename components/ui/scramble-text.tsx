@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react'
 
 const ScrambleText = () => {
-    const languages = ["WELCOME!", "BEM-VINDO!", "WILLKOMMEN!"]
+    const languages = ["WELCOME!", "WILLKOMMEN!"]
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     const [currentText, setCurrentText] = useState(languages[0])
     const [isHovering, setIsHovering] = useState(false)
@@ -34,7 +34,6 @@ const ScrambleText = () => {
 
             if(iteration >= target.length) {
                 clearInterval(intervalRef.current!)
-                // Agenda próxima troca de idioma se não estiver em hover
                 if(!isHovering && isMounted.current) {
                     cycleRef.current = setTimeout(() => {
                         const nextIndex = (languages.indexOf(target) + 1) % languages.length
@@ -55,7 +54,6 @@ const ScrambleText = () => {
 
     const handleMouseLeave = () => {
         setIsHovering(false)
-        // Reinicia ciclo após 2 segundos
         if (cycleRef.current) clearTimeout(cycleRef.current)
         cycleRef.current = setTimeout(() => {
             const nextIndex = (languages.indexOf(currentText) + 1) % languages.length

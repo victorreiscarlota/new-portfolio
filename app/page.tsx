@@ -29,7 +29,7 @@ export default function Home() {
         <>
           <Nav />
           <ThemeToggle />
-          {/* <DragScroll/> */}
+          <DragScroll/>
           <ScrambleText/>
           <Banner />
           <Scroll />
